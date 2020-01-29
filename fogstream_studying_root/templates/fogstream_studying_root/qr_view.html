@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Генерация QR кода!</title>
+    <link rel="stylesheet" href="{% static 'css/bulma.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script defer src="{% static 'js/all.js' %}"></script>
+  </head>
+  <body>
+  	<form name="settings_form" action="#">
+  		<div class="field is-horizontal"></div>
+
+
+		<div class="field is-horizontal">
+		  <div class="field-label is-normal">
+		    <label class="label">Выберете лекцию</label>
+		  </div>
+		  <div class="field-body">
+		    <div class="field is-narrow">
+		      <div class="control small_width">
+		        <div class="select is-fullwidth">
+		          <select name="lecture">
+				  	{% for subject in subjects %}
+						<option value="{{ subject.id }}">{{ subject.lecture_name }}</option>
+					{% endfor %}
+				  </select>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="field is-horizontal">
+		  <div class="field-label is-normal">
+		    <label class="label">Количество слушателей</label>
+		  </div>
+		  <div class="field-body">
+		    <div class="field small_width">
+		      <p class="control is-expanded">
+		         <input class="input is-info small_width" name="count" required type="number" min="1" max="99">
+		      </p>
+		    </div>
+		    </div>
+		  </div>
+		</div>
+
+
+		<div class="field is-horizontal">
+		  <div class="field-label">
+		    <!-- Left empty for spacing -->
+		  </div>
+		  <div class="field-body">
+		    <div class="field">
+		      <div class="control">
+		        <div id="qr_image"></div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		<div class="field is-horizontal">
+		  <div class="field-label">
+		    <!-- Left empty for spacing -->
+		  </div>
+		  <div class="field-body">
+		    <div class="field">
+		      <div class="control small_width">
+		        <div class="button is-link" id="generator">Сгенерировать QR-code</div>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</form>
+  </body>
+
+	<script>
+
+		// function show_qr()
+		// {
+			document.querySelector('#generator').onclick = function() 
+			{
+				var request = new XMLHttpRequest();
+				request.open('POST', '/qr_code', true);
+				request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+				request.addEventListener("readystatechange", () => 
+				{
+				    if (request.readyState === 4 && request.status === 200) 
+				    {
+						document.getElementById('qr_image').innerHTML = request.response;
+					}
+				}
+				);
+				let form = document.forms.settings_form.elements;
+				request.send(JSON.stringify({ 'count': form.count.value,'lectureid': form.lecture.value}));
+
+			}
+		//}
+
+
+	 //  document.querySelector('#elem').onclick = function() {
+	 //    this.classList.toggle('is-active');
+	 //  };
+
+
+		// selector = document.querySelectorAll('.subject');
+	 //    selector.forEach(item => {
+		//   item.addEventListener('click', event => {
+		//   	selector.forEach(cls_item => {cls_item.classList.remove('is-active');});		  	
+		//     item.classList.toggle('is-active');
+		//     document.querySelector('#subject_span').textContent = item.textContent;
+		//   })
+		// });
+
+
+	</script>
+</html>
