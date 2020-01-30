@@ -121,3 +121,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+PRODUCTION = 'DJANGO_PRODUCTION_SERVER' in os.environ
+
+if PRODUCTION:
+    BASE_URL = "127.0.0.1" # This could be computed if you want.
+else:
+    BASE_URL = "evgenia131094.pythonanywhere.com"

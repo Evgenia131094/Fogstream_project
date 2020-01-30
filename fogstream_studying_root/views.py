@@ -5,6 +5,7 @@ from qr_code.qrcode.utils import QRCodeOptions
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.conf import settings
 # Create your views here.
 @csrf_exempt
 def qr_gen(request):
@@ -20,7 +21,7 @@ def qr_gen(request):
         
 
 
-    return render(request, 'fogstream_studying_root/qr_gen.html', {'subjects': "http://evgenia131094.pythonanywhere.com/qr_read_view?count={0}&id={1}".format(data['count'], data['lectureid'])})
+    return render(request, 'fogstream_studying_root/qr_gen.html', {'subjects': "http://{0}/qr_read_view?count={1}&id={2}".format(settings.BASE_URL,data['count'], data['lectureid'])})
     # return render(request, 'fogstream_studying_root/qr_gen.html', context=context)
 
 @csrf_exempt
