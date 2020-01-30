@@ -25,8 +25,7 @@ def qr_gen(request):
 
 @csrf_exempt
 def reg_on_lecture(request):
-	data = request.read()
-    data = json.loads(data.decode('utf-8'))
+    data = json.loads(request.body.decode('utf-8'))
 
     lecture = Subject.objects.get(id=data['lectureid'])
     if Lecture.objects.filter(lecture=lecture).count() < lecture.students_number:
