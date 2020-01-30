@@ -11,7 +11,9 @@ def qr_gen(request):
     context = dict(
         my_options=QRCodeOptions(size='t', border=6, error_correction='L'),
     )
-    data = json.loads(request.body.decode('utf-8'))
+    # data = json.loads(request.body.decode('utf-8'))
+    data = request.read()
+    data = json.loads(data.decode('utf-8'))
 
     if int(data['count']) > 0:
         Subject.objects.filter(id=data['lectureid']).update(students_number=data['count'])
