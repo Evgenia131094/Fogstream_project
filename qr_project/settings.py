@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fogstream_studying_root',
+    'qr_code',
 ]
 
 MIDDLEWARE = [

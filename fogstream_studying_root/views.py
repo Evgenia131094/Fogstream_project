@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Subject, Student, Lecture
-# from qr_code.qrcode.utils import QRCodeOptions
+from qr_code.qrcode.utils import QRCodeOptions
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
