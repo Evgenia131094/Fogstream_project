@@ -11,7 +11,7 @@ def qr_gen(request):
     context = dict(
         my_options=QRCodeOptions(size='t', border=6, error_correction='L'),
     )
-    data = json.loads(request.body)
+    data = json.loads(request.body).decode('utf-8')
 
     if int(data['count']) > 0:
         Subject.objects.filter(id=data['lectureid']).update(students_number=data['count'])
@@ -23,7 +23,7 @@ def qr_gen(request):
 
 @csrf_exempt
 def reg_on_lecture(request):
-    data = json.loads(request.body)
+    data = json.loads(request.body).decode('utf-8')
 
     lecture = Subject.objects.get(id=data['lectureid'])
     if Lecture.objects.filter(lecture=lecture).count() < lecture.students_number:
