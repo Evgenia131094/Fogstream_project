@@ -18,7 +18,7 @@ def qr_gen(request):
         
 
 
-    return render(request, 'fogstream_studying_root/qr_gen.html', {'subjects': "http://127.0.0.1:8000/qr_read_view?count={0}&id={1}".format(data['count'], data['lectureid'])})
+    return render(request, 'fogstream_studying_root/qr_gen.html', {'subjects': "http://evgenia131094.pythonanywhere.com/qr_read_view?count={0}&id={1}".format(data['count'], data['lectureid'])})
     # return render(request, 'fogstream_studying_root/qr_gen.html', context=context)
 
 @csrf_exempt
