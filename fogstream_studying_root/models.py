@@ -4,6 +4,7 @@ from django.utils import timezone
 from datetime import datetime
 
 
+
 class Subject(models.Model):
     # participant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     lector = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -13,8 +14,9 @@ class Subject(models.Model):
     lecture_date = models.DateTimeField(blank=True, null=True)
     students_number = models.IntegerField()
 
-    # def __str__(self):
-    #     return self.lecture_name
+    def __str__(self):
+        # local_t = self.lecture_date.astimezone(Local)
+        return '{0} {1}'.format(self.lecture_name, self.lecture_date.strftime("%d/%m/%Y  в %H:%M"))
 
 class Student(models.Model):
     participant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
