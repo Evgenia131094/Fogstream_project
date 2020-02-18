@@ -7,10 +7,12 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 @csrf_exempt
-@login_required(login_url='/admin')
+
 def qr_gen(request):
+    
     context = dict(
         my_options=QRCodeOptions(size='t', border=6, error_correction='L'),
     )
@@ -55,6 +57,7 @@ def reg_on_lecture(request):
 
     return render(request, 'fogstream_studying_root/reg_on_lecture.html', {'status': status})
 
+@login_required(login_url='/admin')
 def page_view(request):
     subjects = Subject.objects.all().order_by('id')
     return render(request, 'fogstream_studying_root/qr_view.html', {'subjects': subjects})
