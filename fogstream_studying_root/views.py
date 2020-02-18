@@ -8,6 +8,7 @@ import json
 from django.conf import settings
 # Create your views here.
 @csrf_exempt
+@login_required
 def qr_gen(request):
     context = dict(
         my_options=QRCodeOptions(size='t', border=6, error_correction='L'),
