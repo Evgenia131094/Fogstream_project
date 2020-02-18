@@ -9,7 +9,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 @csrf_exempt
-@login_required
+@login_required(login_url='/admin')
 def qr_gen(request):
     context = dict(
         my_options=QRCodeOptions(size='t', border=6, error_correction='L'),
