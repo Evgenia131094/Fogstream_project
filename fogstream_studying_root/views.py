@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 @csrf_exempt
 @login_required
