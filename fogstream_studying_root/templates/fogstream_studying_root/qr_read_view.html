@@ -28,7 +28,7 @@
                   <select name="student" id="student_sel">
                       <option id="default_opt" value="0"><Выберете себя из списка></option>
                       {% for student in students %}
-                        <option value="{{student.id}}" onclick="console.log('log');">{{ student }}</option>
+                        <option value="{{student.id}}">{{ student }}</option>
                     {% endfor %}
                   </select>
                 </div>

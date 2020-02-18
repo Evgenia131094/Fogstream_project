@@ -10,7 +10,7 @@ class Subject(models.Model):
     lector = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     lecture_name = models.CharField(max_length=200)
     lecture_description = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
+    created_date = models.DateTimeField(default="Asia/Vladivostok")
     lecture_date = models.DateTimeField(blank=True, null=True)
     students_number = models.IntegerField()
 

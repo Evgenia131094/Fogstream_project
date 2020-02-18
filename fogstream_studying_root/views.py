@@ -54,7 +54,7 @@ def reg_on_lecture(request):
     return render(request, 'fogstream_studying_root/reg_on_lecture.html', {'status': status})
 
 def page_view(request):
-    subjects = Subject.objects.all()
+    subjects = Subject.objects.all().order_by('id')
     return render(request, 'fogstream_studying_root/qr_view.html', {'subjects': subjects})
 
 
