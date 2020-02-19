@@ -24,7 +24,7 @@
 		        <div class="select is-fullwidth">
 		          <select name="lecture">
 				  	{% for subject in subjects %}
-						<option value="{{ subject.id }}">{{ subject.lecture_name }}</option>
+						<option value="{{ subject.id }}" data-number="{{ subject.students_number }}">{{ subject.lecture_name }}</option>
 					{% endfor %}
 				  </select>
 		        </div>
@@ -40,7 +40,7 @@
 		  <div class="field-body">
 		    <div class="field small_width">
 		      <p class="control is-expanded">
-		         <input class="input is-info small_width" name="count" required type="number" min="1" max="99">
+		         <input class="input is-info small_width" id="lecture_number" name="count" required type="number" min="1" max="99">
 		      </p>
 		    </div>
 		    </div>
@@ -97,6 +97,11 @@
 				let form = document.forms.settings_form.elements;
 				request.send(JSON.stringify({ 'count': form.count.value,'lectureid': form.lecture.value}));
 
+			}
+		
+			document.querySelector('#lecture_sel').onchange = function(e) 
+           		{
+				document.querySelector('#lecture_number').value = this.getAttribute('data-number');
 			}
 		//}
 
