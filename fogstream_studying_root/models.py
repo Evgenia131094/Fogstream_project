@@ -10,7 +10,8 @@ class Subject(models.Model):
     
     
     class Meta:
-        verbose_name = "Дисциплины"
+        verbose_name = "Дисциплина"
+        verbose_name_plural = "Дисциплины"
         
         
     # participant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -32,8 +33,8 @@ class Student(models.Model):
     
     
     class Meta:
-        verbose_name = "Студенты"
-        
+        verbose_name = "Студент"
+        verbose_name_plural = "Студенты"
      
     participant = models.ForeignKey(settings.AUTH_USER_MODEL, 
                                     on_delete=models.CASCADE, 
@@ -52,7 +53,8 @@ class Student(models.Model):
 class Lecture(models.Model):
     
     class Meta:
-        verbose_name = "Лекции"
+        verbose_name = "Лекция"
+        verbose_name_plural ="Лекции"
         
     lecture = models.ForeignKey(Subject, 
                                 on_delete=models.CASCADE, 
