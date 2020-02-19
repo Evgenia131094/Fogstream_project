@@ -7,6 +7,7 @@ from django.core.validators import RegexValidator
 
 
 class Subject(models.Model):
+    verbose_name = "Дисциплины"
     # participant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     lector = models.ForeignKey(settings.AUTH_USER_MODEL, 
                                on_delete=models.CASCADE, 
@@ -23,6 +24,7 @@ class Subject(models.Model):
         return '{0} {1}'.format(self.lecture_name, self.lecture_date.strftime("%d/%m/%Y  в %H:%M %z"))
 
 class Student(models.Model):
+    verbose_name = "Студенты"
     participant = models.ForeignKey(settings.AUTH_USER_MODEL, 
                                     on_delete=models.CASCADE, 
                                     limit_choices_to={'is_staff':False},
@@ -38,6 +40,7 @@ class Student(models.Model):
         return name
 
 class Lecture(models.Model):
+    verbose_name = "Лекции"
     lecture = models.ForeignKey(Subject, 
                                 on_delete=models.CASCADE, 
                                 verbose_name = "Лекция",)
