@@ -8,7 +8,7 @@ from django.core.validators import RegexValidator
 
 class Subject(models.Model):
     # participant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    lector = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    lector = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, limit_choices_to={'is_staff':true})
     lecture_name = models.CharField(max_length=200)
     lecture_description = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
