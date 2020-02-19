@@ -12,11 +12,11 @@ class Subject(models.Model):
                                on_delete=models.CASCADE, 
                                limit_choices_to={'is_staff':True}, 
                                verbose_name = "Лектор",)
-    lecture_name = models.CharField(max_length=200)
-    lecture_description = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
-    lecture_date = models.DateTimeField(blank=True, null=True)
-    students_number = models.IntegerField()
+    lecture_name = models.CharField(max_length=200, verbose_name = "Дисциплина")
+    lecture_description = models.TextField(verbose_name = "Описание дисциплины")
+    created_date = models.DateTimeField(default=timezone.now, verbose_name = "Дата создания")
+    lecture_date = models.DateTimeField(blank=True, null=True, verbose_name = "Дата проведения лекции")
+    students_number = models.IntegerField(verbose_name = "Количество слушателей")
 
     def __str__(self):
         # local_t = self.lecture_date.astimezone(Local)
@@ -29,7 +29,7 @@ class Student(models.Model):
                                     verbose_name = "Студент"
                                    )
     phone_regex = RegexValidator(regex=r'\+7\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}', message="Введенный номер телефона должен быть в следующем формате: '+7(999)999-99-99'")
-    phone_number = phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True)
+    phone_number = phone_number = models.CharField(validators=[phone_regex], max_length=17, blank=True, verbose_name = "Телефон")
     
     def __str__(self):
         name = '{1} {0}'.format(self.participant.first_name, self.participant.last_name)
