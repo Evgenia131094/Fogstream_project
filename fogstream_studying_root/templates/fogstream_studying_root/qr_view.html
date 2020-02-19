@@ -79,7 +79,9 @@
 	<script>
 
 		// function show_qr()
-		// {
+		// {	
+			document.querySelector('#lecture_number').value = document.querySelector('#lecture_sel').children[document.querySelector('#lecture_sel').selectedIndex].getAttribute('data-number')
+		
 			document.querySelector('#generator').onclick = function() 
 			{
 				var request = new XMLHttpRequest();
@@ -101,7 +103,7 @@
 		
 			document.querySelector('#lecture_sel').onchange = function(e) 
            		{
-				document.querySelector('#lecture_number').value = this.getAttribute('data-number');
+				document.querySelector('#lecture_number').value = this.children[this.selectedIndex].getAttribute('data-number');
 			}
 		//}
 
