@@ -22,7 +22,7 @@
 		    <div class="field is-narrow">
 		      <div class="control small_width">
 		        <div class="select is-fullwidth">
-		          <select name="lecture">
+		          <select name="lecture" id="lecture_sel">
 				  	{% for subject in subjects %}
 						<option value="{{ subject.id }}" data-number="{{ subject.students_number }}">{{ subject.lecture_name }}</option>
 					{% endfor %}
